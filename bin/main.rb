@@ -1,10 +1,3 @@
-require 'fileutils'
-
-# file_data.each{|x| puts x.include?('class') ? 'I found a class' : next}
-
-# # __FILE__ keyword in ruby
-# puts "The current ruby file being executed is #{__FILE__}"
-
 puts 'Hello, this is a linter that helps you check the correct style of your JS files'
 puts
 current_directory = File.dirname(__FILE__)
@@ -34,3 +27,6 @@ puts
 file_data = []
 File.foreach(dir_to_check + '/' + selected_file) { |line| file_data.push(line) }
 puts file_data
+
+
+# file_data.each{|x| puts x.include?('class') ? 'I found a class' : next}
