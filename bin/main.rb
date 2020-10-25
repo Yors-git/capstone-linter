@@ -1,3 +1,5 @@
+require_relative '../lib/style_rules.rb'
+
 puts 'Hello, this is a linter that helps you check the correct style of your JS files'
 puts
 current_directory = File.dirname(__FILE__)
@@ -26,7 +28,10 @@ end
 puts
 file_data = []
 File.foreach(dir_to_check + '/' + selected_file) { |line| file_data.push(line) }
-puts file_data
+
+file_to_lint = Rules.new
+file_to_lint.semicolons(file_data)
+
 
 
 # file_data.each{|x| puts x.include?('class') ? 'I found a class' : next}
