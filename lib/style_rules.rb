@@ -3,6 +3,11 @@ class Rules
 
   def initialize
     @numOfErr = 0
+    @indentation = 0
+    @stack = []
+    @tmp = " " 
+    @cond1 = true
+    @cond2 = true
   end
   
   def semicolons(lines)
@@ -58,30 +63,23 @@ class Rules
   end
 
   def indentation(lines)
-    opened = 0
     lines.each_with_index do |x, i|
-      if x.end_with?("{\n")
-        opened += 1
-        puts x
-        puts lines[i+opened].index(/\s/) == 3
-        puts lines[i+opened].index(/\S/) == 4
-        puts lines[i+opened]
-        # puts lines[i+opened][0] == " "
-        # puts lines[i+opened][1] == " "
-        # puts lines[i+opened][2] == " "
-        # puts lines[i+opened][3] == " "
-        # puts lines[i+opened][4] == " "
-        puts opened 
-      # elsif x.start_with?("}")
-      #   opened -= 1
-        # puts x
-        # puts lines[i+1]
-        # x_arr = x[i+1].split("")
-        # x_arr.each_with_index do |item, j|
-        #   puts x_arr
-        #   # puts "#{x_arr[j]} 1sp #{x_arr[j+1]} 2sp #{x_arr[2]}"
-        # end 
-      else     
+      cond1 = !(/^(\s{#{@indentation}})/.match(x)).nil?
+      x.each_char.with_index do |c, index|
+        if c == "{"
+          @stack << c
+          @indentation += 2
+        elsif c == "}"
+          @temp = @stack.pop
+          if (@temp == "{" && c == "}")
+            @indentation -= 2
+          end
+        end
+      end
+      cond2 = !(/^(\s{#{@indentation}})/.match(x)).nil?
+      
+      if !cond1 && !cond2
+        puts "Incorrect indentation, please check line #{i+1}"
         @numOfErr += 1
       end
     end
