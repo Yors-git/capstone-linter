@@ -31,7 +31,12 @@ File.foreach(dir_to_check + '/' + selected_file) { |line| file_data.push(line) }
 
 file_to_lint = Rules.new
 file_to_lint.semicolons(file_data)
-
-
-
-# file_data.each{|x| puts x.include?('class') ? 'I found a class' : next}
+file_to_lint.space_around_operators(file_data)
+file_to_lint.camel_case_var(file_data)
+file_to_lint.indentation(file_data)
+puts
+if file_to_lint.numOfErr != 0
+  puts "Found #{file_to_lint.numOfErr} errors, please correct them and run again"
+else
+  puts "No errors found!"
+end
