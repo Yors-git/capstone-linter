@@ -63,7 +63,8 @@ const generateRandomColors = (num) => {
 ├── bin
 │   └── main.rb
 ├── lib
-│    └──style_rules.rb
+│    ├──style_rules.rb
+│    └──run.rb
 ├── to_check
 │    ├── testCorrect.js
 │    └── testErrors.js
