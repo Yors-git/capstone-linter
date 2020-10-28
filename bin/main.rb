@@ -34,6 +34,7 @@ file_to_lint.semicolons(file_data)
 file_to_lint.space_around_operators(file_data)
 file_to_lint.camel_case_var(file_data)
 file_to_lint.indentation(file_data)
+file_to_lint.space_after_arguments(file_data)
 puts
 if file_to_lint.numOfErr != 0
   puts "Found #{file_to_lint.numOfErr} errors, please correct them and run again"

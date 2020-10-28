@@ -6,8 +6,6 @@ class Rules
     @indentation = 0
     @stack = []
     @tmp = " " 
-    @cond1 = true
-    @cond2 = true
   end
   
   def semicolons(lines)
@@ -65,7 +63,7 @@ class Rules
   def indentation(lines)
     lines.each_with_index do |x, i|
       cond1 = !(/^(\s{#{@indentation}})/.match(x)).nil?
-      x.each_char.with_index do |c, index|
+      x.each_char do |c|
         if c == "{"
           @stack << c
           @indentation += 2
@@ -83,5 +81,19 @@ class Rules
         @numOfErr += 1
       end
     end
+  end
+
+  def space_after_arguments(lines)
+    lines.each_with_index do |x, i|
+      if x.include?(',')
+        commas = (0 ... x.length).find_all {|ind| x[ind, 1] == ','}
+        commas.each do |com|
+          if !(x[com+1] == " ")
+            puts "Missing space after argument in line #{i+1} column #{com+2}"
+            @numOfErr += 1
+          end
+        end
+      end
+    end 
   end
 end
