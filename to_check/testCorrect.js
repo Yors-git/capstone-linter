@@ -91,7 +91,3 @@ resetButton.addEventListener("click", function(){
 });
 
 init();
-
-
-
-

@@ -4,14 +4,14 @@ class Rules
 
   def initialize
     @num_of_err = 0
-    @indentation = 0
+    @indent = 0
     @stack = []
     @tmp = ' '
   end
 
   def semicolons(lines)
     lines.each_with_index do |x, i|
-      if x.end_with?(";\n") || x.end_with?("{\n") || x.end_with?("}\n") || x == "\n" || x.include?('//')
+      if x.end_with?(";\n") || x.end_with?("{\n") || x.end_with?("}\n") || x == "\n" || x.include?('//') || x.end_with?(";")
       else
         puts "Missing semicolon in line #{i + 1}"
         @num_of_err += 1
@@ -62,17 +62,17 @@ class Rules
 
   def indentation(lines)
     lines.each_with_index do |x, i|
-      cond1 = !/^(\s{#{@indentation}})/.match(x).nil?
+      cond1 = !/^(\s{#{@indent}})/.match(x).nil?
       x.each_char do |c|
         if c == '{'
           @stack << c
-          @indentation += 2
+          @indent += 2
         elsif c == '}'
           @temp = @stack.pop
-          @indentation -= 2 if @temp == '{' && c == '}'
+          @indent -= 2 if @temp == '{' && c == '}'
         end
       end
-      cond2 = !/^(\s{#{@indentation}})/.match(x).nil?
+      cond2 = !/^(\s{#{@indent}})/.match(x).nil?
 
       if !cond1 && !cond2
         puts "Incorrect indentation, please check line #{i + 1}"

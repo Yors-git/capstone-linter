@@ -30,6 +30,8 @@ puts
 file_data = []
 File.foreach(dir_to_check + '/' + selected_file) { |line| file_data.push(line) }
 
+puts file_data.is_a?(Array)
+
 file_to_lint = Rules.new
 file_to_lint.semicolons(file_data)
 file_to_lint.space_around_operators(file_data)

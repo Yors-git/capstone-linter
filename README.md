@@ -19,7 +19,18 @@ Once you have the folder of the linter copied according to the previous parragra
 - To specify the complete path of the folder where you have the files you want to check, after that the program will show you ONLY the .js files in that folder, then type the name of the file and it will run and tell you if you have errors or not
 
 # Examples
-Inside the folder "to_check" you'll find two files, one called testCorrect.js that shouln't return any errors and another one called testErrors.js with the same code only with two errors of each type just so you can see the difference
+Inside the folder "to_check" you'll find two files, one called testCorrect.js that shouln't return any errors and another one called testErrors.js with the same code only with two errors of each type just so you can see the difference, the errors are the following:
+
+- Missing semicolon in line 3
+- Missing semicolon in line 9
+- Missing space before = sign in line 13 column 12
+- Missing space after * sign in line 20 column 36
+- Variables should not start with uppercase, check line 6
+- Variables should not start with uppercase, check line 26
+- Incorrect indentation, please check line 20
+- Incorrect indentation, please check line 33
+- Missing space after argument in line 23 column 20
+- Missing space after argument in line 33 column 44
 
 # Project Structure
 
