@@ -1,9 +1,14 @@
 # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-class Rules
-  attr_accessor :num_of_err
+module Rules
+  attr_accessor :num_of_err, :line_of_err, :indent
 
   def initialize
     @num_of_err = 0
+    @err_semicolons = []
+    @err_sp_arnd_op = []
+    @err_camel = []
+    @err_indent = []
+    @err_sp_arg = []
     @indent = 0
     @stack = []
     @tmp = ' '
@@ -11,10 +16,15 @@ class Rules
 
   def semicolons(lines)
     lines.each_with_index do |x, i|
-      if x.end_with?(";\n") || x.end_with?("{\n") || x.end_with?("}\n") || x == "\n" || x.include?('//') || x.end_with?(";")
+      if x.end_with?(";\n") ||
+         x.end_with?("{\n") ||
+         x.end_with?("}\n") ||
+         x == "\n" ||
+         x.include?('//') ||
+         x.end_with?(';')
       else
-        puts "Missing semicolon in line #{i + 1}"
         @num_of_err += 1
+        @err_semicolons << i + 1
       end
     end
   end
@@ -26,12 +36,12 @@ class Rules
         if (item =~ /[\+\-\*\=\%\<\>]/).is_a?(Integer) &&
            (x_arr[j - 1] =~ /\S/).is_a?(Integer) &&
            (x_arr[j - 1] =~ /[\+\-\*\=\%\<\>]/).nil?
-          puts "Missing space before #{item} sign in line #{i + 1} column #{j + 1}"
+          @err_sp_arnd_op << i + 1
           @num_of_err += 1
         elsif (item =~ /[\+\-\*\=\%\<\>]/).is_a?(Integer) &&
               (x_arr[j + 1] =~ /\S/).is_a?(Integer) &&
               (x_arr[j + 1] =~ /[\+\-\*\=\%\<\>]/).nil?
-          puts "Missing space after #{item} sign in line #{i + 1} column #{j + 2}"
+          @err_sp_arnd_op << i + 1
           @num_of_err += 1
         end
       end
@@ -43,17 +53,17 @@ class Rules
       case x
       when /const/
         unless (x[(x.index('const') + 6)] =~ /[A-Z]/).nil?
-          puts "Variables should not start with uppercase, check line #{i + 1}"
+          @err_camel << i + 1
           @num_of_err += 1
         end
       when /let/
         unless (x[(x.index('let') + 4)] =~ /[A-Z]/).nil?
-          puts "Variables should not start with uppercase, check line #{i + 1}"
+          @err_camel << i + 1
           @num_of_err += 1
         end
       when /var/
         unless (x[(x.index('var') + 4)] =~ /[A-Z]/).nil?
-          puts "Variables should not start with uppercase, check line #{i + 1}"
+          @err_camel << i + 1
           @num_of_err += 1
         end
       end
@@ -75,7 +85,7 @@ class Rules
       cond2 = !/^(\s{#{@indent}})/.match(x).nil?
 
       if !cond1 && !cond2
-        puts "Incorrect indentation, please check line #{i + 1}"
+        @err_indent << i + 1
         @num_of_err += 1
       end
     end
@@ -88,7 +98,7 @@ class Rules
       commas = (0...x.length).find_all { |ind| x[ind, 1] == ',' }
       commas.each do |com|
         if x[com + 1] != ' '
-          puts "Missing space after argument in line #{i + 1} column #{com + 2}"
+          @err_sp_arg << i + 1
           @num_of_err += 1
         end
       end

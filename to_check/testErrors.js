@@ -5,8 +5,8 @@ let colorDisplay = document.getElementById("colorDisplay");
 let squares = document.querySelectorAll(".square");
 let MessageDisplay = document.getElementById("messageDisplay");
 let h1 = document.querySelector("h1");
-let resetButton = document.getElementById("reset");
-let modeButtons = document.querySelectorAll(".mode")
+let resetButton = document.getElementById("reset")
+let modeButtons = document.querySelectorAll(".mode");
 
 const generateRandomColors = (num) => {
   let arr = [];
