@@ -1,3 +1,4 @@
+# rubocop: disable Lint/AmbiguousBlockAssociation
 require_relative '../lib/style_rules.rb'
 
 puts 'Hello, this is a linter that helps you check the correct style of your JS files'
@@ -5,7 +6,7 @@ puts
 current_directory = File.dirname(__FILE__)
 pwd = File.expand_path(current_directory)
 puts "You are in #{pwd}"
-puts 
+puts
 puts 'Please type or paste the path of the folder where you have the files to check'
 dir_to_check = gets.chomp
 
@@ -17,7 +18,7 @@ puts
 puts 'Please select the file from the list below'
 puts
 files_arr = Dir.children(dir_to_check)
-puts files_arr.select {|f| f.end_with?('.js')}
+puts files_arr.select { |f| f.end_with?('.js') }
 puts
 selected_file = gets.chomp
 
@@ -36,8 +37,9 @@ file_to_lint.camel_case_var(file_data)
 file_to_lint.indentation(file_data)
 file_to_lint.space_after_arguments(file_data)
 puts
-if file_to_lint.numOfErr != 0
-  puts "Found #{file_to_lint.numOfErr} errors, please correct them and run again"
+if file_to_lint.num_of_err != 0
+  puts "Found #{file_to_lint.num_of_err} errors, please correct them and run again"
 else
-  puts "No errors found!"
+  puts 'No errors found!'
 end
+# rubocop: enable Lint/AmbiguousBlockAssociation
