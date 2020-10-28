@@ -19,19 +19,19 @@ describe Rules do
       expect(semicolons(test_arr2)).to eql([1, [1]])
     end
 
-    it 'should not return any error' do
+    it 'should not return any semicolon error' do
       expect(semicolons(test_arr)).to eql([nil, nil])
     end
   end
 
   describe '#space_around_operators' do
-    it 'checks that there are spaces after each math operator' do
+    it 'checks for the amount of space operator errors and in which line it found them' do
       @num_of_err = 0
       @err_sp_arnd_op = []
       expect(space_around_operators(test_oper2)).to eql([2, [1, 2]])
     end
 
-    it 'checks that there are spaces before each math operator' do
+    it 'confirms that there is no errors according to test case' do
       expect(space_around_operators(test_oper)).to eql([nil, nil])
     end
   end
@@ -45,14 +45,14 @@ describe Rules do
   end
 
   describe '#indentation' do
-    it 'checks for a 2 space indentation each time it finds an opening curly brace' do
+    it 'confirms the item after the one ending with open curly brace has two spaces at the beginning' do
       @num_of_err = 0
       @err_indent = []
       @stack = []
       @indent = 0
       expect(indentation(test_indent)).to eql([0, []])
     end
-    it 'checks for a 2 space indentation each time it finds an opening curly brace' do
+    it 'finds one error of less than two spaces indentation after the line with the open curly brace' do
       @num_of_err = 0
       @err_indent = []
       @stack = []
@@ -62,12 +62,12 @@ describe Rules do
   end
 
   describe '#space_after_arguments' do
-    it 'checks if there is a space after each comma' do
+    it 'confirms that there is a space after each comma acorrding to test case' do
       @num_of_err = 0
       @err_sp_arg = []
       expect(space_after_arguments(test_sp_aftr_arg)).to eql([0, []])
     end
-    it 'checks if there is a space after each comma' do
+    it 'finds one error of a missing space after a comma' do
       @num_of_err = 0
       @err_sp_arg = []
       expect(space_after_arguments(test_sp_aftr_arg2)).to eql([1, [1]])
