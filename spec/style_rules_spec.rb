@@ -12,7 +12,7 @@ describe Rules do
   let(:test_sp_aftr_arg) { ['1, 2, 3'] }
   let(:test_sp_aftr_arg2) { ['1,2, 3'] }
 
-  describe '#semicolons' do 
+  describe '#semicolons' do
     it 'checks if a line has a semicolon at the end' do
       @num_of_err = 0
       @err_semicolons = []
@@ -23,7 +23,7 @@ describe Rules do
       expect(semicolons(test_arr)).to eql([nil, nil])
     end
   end
- 
+
   describe '#space_around_operators' do
     it 'checks that there are spaces after each math operator' do
       @num_of_err = 0

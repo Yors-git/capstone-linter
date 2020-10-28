@@ -2,7 +2,16 @@ require_relative './style_rules.rb'
 
 class Run
   include Rules
-  attr_accessor :report, :num_of_err, :err_semicolons, :err_sp_arnd_op, :err_camel, :err_indent, :err_sp_arg, :indent, :stack, :tmp
+  attr_accessor :report,
+                :num_of_err,
+                :err_semicolons,
+                :err_sp_arnd_op,
+                :err_camel,
+                :err_indent,
+                :err_sp_arg,
+                :indent,
+                :stack,
+                :tmp
 
   def initialize
     @report = []
@@ -36,8 +45,8 @@ class Run
       @report.each do |err|
         puts err
       end
-      else
-        puts 'No errors found!'
-      end 
+    else
+      puts 'No errors found!'
+    end
   end
 end
