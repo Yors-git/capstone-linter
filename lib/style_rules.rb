@@ -1,18 +1,6 @@
 # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 module Rules
-  attr_accessor :num_of_err, :line_of_err, :indent
-
-  def initialize
-    @num_of_err = 0
-    @err_semicolons = []
-    @err_sp_arnd_op = []
-    @err_camel = []
-    @err_indent = []
-    @err_sp_arg = []
-    @indent = 0
-    @stack = []
-    @tmp = ' '
-  end
+  attr_accessor :num_of_err, :err_semicolons, :err_sp_arnd_op, :err_camel, :err_indent, :err_sp_arg, :indent, :stack, :tmp
 
   def semicolons(lines)
     lines.each_with_index do |x, i|
@@ -27,6 +15,7 @@ module Rules
         @err_semicolons << i + 1
       end
     end
+    return @num_of_err, @err_semicolons
   end
 
   def space_around_operators(lines)
@@ -46,6 +35,7 @@ module Rules
         end
       end
     end
+    return @num_of_err, @err_sp_arnd_op
   end
 
   def camel_case_var(lines)
@@ -68,6 +58,7 @@ module Rules
         end
       end
     end
+    return @num_of_err, @err_camel
   end
 
   def indentation(lines)
@@ -89,6 +80,7 @@ module Rules
         @num_of_err += 1
       end
     end
+    return @num_of_err, @err_indent
   end
 
   def space_after_arguments(lines)
@@ -103,6 +95,7 @@ module Rules
         end
       end
     end
+    return @num_of_err, @err_sp_arg
   end
 end
 # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity

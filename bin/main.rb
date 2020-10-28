@@ -32,5 +32,5 @@ File.foreach(dir_to_check + '/' + selected_file) { |line| file_data.push(line) }
 
 file_to_lint = Run.new
 file_to_lint.messages(file_data)
-
+file_to_lint.report_errors
 # rubocop: enable Lint/AmbiguousBlockAssociation

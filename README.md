@@ -32,6 +32,30 @@ Inside the folder "to_check" you'll find two files, one called testCorrect.js th
 - Missing space after argument in line 23 column 20
 - Missing space after argument in line 33 column 44
 
+# Good code example:
+```bash
+let newVar =  0;
+const generateRandomColors = (num) => {
+  let arr = [];
+  for(let i = 0; i < num; i ++ ){
+    arr.push(randomColor());
+  }
+  return arr;
+} 
+```
+
+# Bad code example:
+```bash
+let NewVar =  0
+const generateRandomColors = (num) => {
+ let arr = [];
+  for(let i= 0; i < num; i ++ ){
+    arr.push(randomColor());
+  }
+  return arr;
+} 
+```
+
 # Project Structure
 
 ```bash 
