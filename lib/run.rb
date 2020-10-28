@@ -38,15 +38,4 @@ class Run
     space_after_arguments(linted)
     @report << "Missing space between arguments #{@err_sp_arg}" if @err_sp_arg.length.positive?
   end
-
-  def report_errors
-    if @num_of_err.positive?
-      puts "Found #{@num_of_err} errors"
-      @report.each do |err|
-        puts err
-      end
-    else
-      puts 'No errors found!'
-    end
-  end
 end
