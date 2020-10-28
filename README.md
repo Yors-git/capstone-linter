@@ -16,7 +16,7 @@ Copy the linter folder anywhere in your computer, it is recommended to copy it n
 # Instructions
 Once you have the folder of the linter copied according to the installation paragraph, you have two options:
 
-- To copy the files you want to check to the "to_check" folder inside the main folder, then run the linter with "ruby bin/main.rb"; the program will show you the complete current path you are in, and you just need to adjust it either by typing or copy-pasting the remaining part to go to the "to_chek" folder.
+- To copy the files you want to check to the "to_check" folder inside the main folder, then run the linter with "./bin/main" if you are in the project rrot folder or "./main" if you are inside de bin folder; the program will show you the complete current path you are in, and you just need to adjust it either by typing or copy-pasting the remaining part to go to the "to_chek" folder.
 
 - To specify the COMPLETE path (from your root) of the folder where you have the files you want to check, after that the program will show you ONLY the .js files in that folder, then the program will ask you to type the name of the file you want to check, and after hitting enter it will run and tell you if you have errors or not, in which line and what kind.
 

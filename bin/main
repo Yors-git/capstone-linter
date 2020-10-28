@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # rubocop: disable Lint/AmbiguousBlockAssociation
 require_relative '../lib/run.rb'
 
