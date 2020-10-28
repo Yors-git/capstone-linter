@@ -71,7 +71,7 @@ module Rules
 
   def indentation(lines)
     lines.each_with_index do |x, i|
-      cond1 = !(/^(\s{#{@indent}})/).match(x).nil?
+      cond1 = !/^(\s{#{@indent}})/.match(x).nil?
       x.each_char do |c|
         if c == '{'
           @stack << c
@@ -81,7 +81,7 @@ module Rules
           @indent -= 2 if @temp == '{' && c == '}'
         end
       end
-      cond2 = !(/^(\s{#{@indent}})/).match(x).nil?
+      cond2 = !/^(\s{#{@indent}})/.match(x).nil?
 
       if !cond1 && !cond2
         @err_indent << i + 1
