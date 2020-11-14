@@ -85,7 +85,7 @@ const generateRandomColors = (num,x) => {    \\missing space between arguments
 
 - Twitter: [@Yors_82](https://twitter.com/Yors_82)
 
-- LinkedIn: [Jorge Torres](https://www.linkedin.com/in/jorge-torres-8b87571a8/)
+- LinkedIn: [Jorge Torres](https://www.linkedin.com/in/jtbribiesca/)
 
 
 ## Show your support
